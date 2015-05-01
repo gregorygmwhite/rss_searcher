@@ -1,0 +1,2 @@
+http://feeds.feedburner.com/ForeignPolicyJournal?format=xml
+http://feeds.feedburner.com/techcrunch/fundings-exits?format=xml
