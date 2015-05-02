@@ -1,9 +1,22 @@
 require_relative "rss_keyword_finder.rb"
+require_relative "file_reader.rb"
+
+class RSS_Searcher
+
+  def initialize(feeds, keywords)
+    @feed_urls = File_Reader::get_lines(feeds)
+    @keywords = File_Reader::get_lines(keywords)
+  end
+
+  def get_links_of_interest
+    searcher = RSS_Keyword_Searcher.new(@feed_urls, @keywords)
+    return searcher.get_links_of_interest
+  end
+
+end
 
 keywords = ["Vietnam", "China", "Money"]
+feed_filname = "rss_feeds.txt"
 
-searcher = RSS_Seacher.new
-searcher.search_for_keywords(keywords)
-links_of_interest = searcher.links_of_interest
-
-pp links_of_interest
+searcher = RSS_Searcher.new(feed_filname, keywords)
+pp searcher.get_links_of_interest

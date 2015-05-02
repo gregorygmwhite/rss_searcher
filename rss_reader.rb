@@ -2,14 +2,11 @@ require_relative "xml_to_hash.rb"
 
 class RSS_Reader
 
-  def initialize(file_name)
-    return null if !file_name
-    @feed_urls = File.readlines(file_name).each_with_object(Array.new) do |line, urls|
-      #TODO check if valid url
-      urls.push line
-    end
+  def initialize(feed_urls)
+    @feed_urls = feed_urls
   end
 
+  # returns an array of news item hashes 
   def get_news_items
     news_items = @feed_urls.each_with_object(Array.new) do |url, items|
       raw_rss_content = `curl #{url}`
