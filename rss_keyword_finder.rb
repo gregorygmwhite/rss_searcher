@@ -20,7 +20,7 @@ class RSS_Keyword_Searcher
     @news_items.each do |item|
       content = self.content_from_item(item)
       next if self.out_of_date(item)
-      links_of_interest.push(item[:link]) if self.is_of_interest(content)
+      links_of_interest.push(item.link) if self.is_of_interest(content)
     end
     return links_of_interest
   end
@@ -60,13 +60,16 @@ class RSS_Keyword_Searcher
   end
 
   def out_of_date(news_item)
-    pub_date_string = news_item[:pubDate]
+    pub_date_string = news_item.pubDate.to_s
     pub_date = Date.parse(pub_date_string)
     return pub_date < @minimum_publish_date
   end
 
   def content_from_item(item)
-    return (item[:description]+" "+item[:title]).downcase
+    content_string = item.categories.each_with_object("") do |category, string|
+      string.concat category.content
+    end
+    return (content_string+item.description+item.title).downcase
   end
 
   def valid_match_level(match_level)

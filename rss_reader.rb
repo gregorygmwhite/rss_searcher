@@ -1,4 +1,5 @@
-require_relative "xml_to_hash.rb"
+require 'rss'
+require 'open-uri'
 
 class RSS_Reader
 
@@ -6,13 +7,13 @@ class RSS_Reader
     @feed_urls = feed_urls
   end
 
-  # returns an array of news item hashes 
+  # returns an array of rss items
   def get_news_items
     news_items = @feed_urls.each_with_object(Array.new) do |url, items|
-      raw_rss_content = `curl #{url}`
-      #TODO check if valid rss
-      rss_content = Hash.from_xml raw_rss_content
-      items.concat rss_content[:rss][:channel][:item]
+      open(url) do |rss|
+        feed = RSS::Parser.parse(rss)
+        items.concat feed.items
+      end
     end
     return news_items.empty? ? nil : news_items
   end
