@@ -8,8 +8,8 @@ class RSS_Searcher
     @keywords = File_Reader::get_lines(keywords)
   end
 
-  def get_links_of_interest
-    searcher = RSS_Keyword_Searcher.new(@feed_urls, @keywords)
+  def get_links_of_interest(match_level)
+    searcher = RSS_Keyword_Searcher.new(@feed_urls, @keywords, match_level)
     return searcher.get_links_of_interest
   end
 
@@ -19,4 +19,4 @@ keywords = ["Vietnam", "China", "Money"]
 feed_filname = "rss_feeds.txt"
 
 searcher = RSS_Searcher.new(feed_filname, keywords)
-pp searcher.get_links_of_interest
+pp searcher.get_links_of_interest("ONE_OR_MORE")
