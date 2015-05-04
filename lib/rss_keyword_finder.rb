@@ -9,11 +9,12 @@ class RSS_Keyword_Searcher
   def initialize(feed_urls, keywords, match_level, minimum_publish_date=Date.today)
     @reader = RSS_Reader.new(feed_urls)
     @news_items = @reader.get_news_items
-    raise ArgumentError, "no keywords given" unless keywords.is_a?(Array) && keywords.length > 0
     @keywords = keywords
-    raise ArgumentError, "invalid match_level" unless self.valid_match_level(match_level)
     @match_level = match_level
     @minimum_publish_date = minimum_publish_date
+    raise ArgumentError, "no valid feed urls given" unless @news_items
+    raise ArgumentError, "no keywords given" unless keywords.is_a?(Array) && keywords.length > 0
+    raise ArgumentError, "invalid match_level" unless self.valid_match_level(match_level)
   end
 
   def get_links_of_interest(links_of_interest=Array.new)

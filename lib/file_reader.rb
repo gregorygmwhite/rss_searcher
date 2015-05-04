@@ -13,10 +13,15 @@ class File_Reader
   # assumes file has one line to one url ratio
   def self.get_lines_from_file(filename)
     return null if !filename
-    return File.readlines(filename).each_with_object(Array.new) do |line, urls|
-      if( line =~ /#{URL_REGEX}/)
-        urls.push line.chomp
+    begin
+      return File.readlines(filename).each_with_object(Array.new) do |line, urls|
+        if( line =~ /#{URL_REGEX}/)
+          urls.push line.chomp
+        end
       end
+    rescue
+      puts "failed to open file #{filename}"
+      return nil
     end
   end 
 
