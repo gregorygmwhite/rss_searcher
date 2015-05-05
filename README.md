@@ -1,5 +1,5 @@
 # rss_searcher
-##A tool for curating rss feeds by keyword
+A tool for curating rss feeds by keyword
 
 ##Usage
 ###Get the gem:
@@ -26,11 +26,11 @@ Can be a path to a file of line separated keywords or an array of keywords.
 #####"ONE_OR_MORE": 
 One or more keywords must be found in the feed to be declared of interest.
 #####"ALL": 
-all keywords must be found in a feed to be declared of interest.
-#####An Integer between 1-100 
-denoting the percentage of keywords that must be found in the feed to declare it of interest
+All keywords must be found in a feed to be declared of interest.
+#####An Integer between 1-100:
+Denoting the percentage of keywords that must be found in the feed to declare it of interest
 
-####minimum_publish_date
-A ruby date denoting the last date an article can be published before it is considered not of interest
+####minimum_publish_date:
+A date object denoting the last date an article can be published before it is considered not of interest
 
 There you go! Questions, comments, concerns, contributions and issues welcome.
