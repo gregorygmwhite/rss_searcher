@@ -8,8 +8,8 @@ RSpec.describe "Searcher" do
       feed_filname = "../feeds/rss_feeds.txt"
       match_level = "ONE_OR_MORE"
       last_three_days = Date.today - 3
-      searcher = RSS_Searcher.new(feed_filname, keywords,last_three_days)
-      expect(searcher.get_links_of_interest(match_level).length > 0)
+      searcher = RSS_Searcher.new
+      expect(searcher.get_links_of_interest(feed_filname, keywords,match_level,last_three_days).length > 0)
     end
 
     it "should give no back links for 'all' match level with weird string in keywords" do
@@ -17,8 +17,8 @@ RSpec.describe "Searcher" do
       feed_filname = "../feeds/rss_feeds.txt"
       match_level = "ALL"
       last_three_days = Date.today - 3
-      searcher = RSS_Searcher.new(feed_filname, keywords,last_three_days)
-      expect(searcher.get_links_of_interest(match_level).length === 0)
+      searcher = RSS_Searcher.new
+      expect(searcher.get_links_of_interest(feed_filname, keywords,match_level,last_three_days).length === 0)
     end
 
     it "should give some back links for '2%' match level" do
@@ -26,8 +26,8 @@ RSpec.describe "Searcher" do
       feed_filname = "../feeds/rss_feeds.txt"
       match_level = 2
       last_three_days = Date.today - 3
-      searcher = RSS_Searcher.new(feed_filname, keywords,last_three_days)
-      expect(searcher.get_links_of_interest(match_level).length > 0)
+      searcher = RSS_Searcher.new
+      expect(searcher.get_links_of_interest(feed_filname, keywords,match_level,last_three_days).length > 0)
     end
   end
 
@@ -37,8 +37,8 @@ RSpec.describe "Searcher" do
       feed_filname = "../feeds/non_existent_feeds.txt"
       match_level = "ONE_OR_MORE"
       last_three_days = Date.today - 3
-      searcher = RSS_Searcher.new(feed_filname, keywords,last_three_days)
-      expect(searcher.get_links_of_interest(match_level).length == 0)
+      searcher = RSS_Searcher.new
+      expect(searcher.get_links_of_interest(feed_filname, keywords,match_level,last_three_days).length == 0)
     end
 
     it "should give back an empty array for malformed match_level" do
@@ -46,8 +46,8 @@ RSpec.describe "Searcher" do
       feed_filname = "../feeds/rss_feeds.txt"
       match_level = "asdfal;asfj;"
       last_three_days = Date.today - 3
-      searcher = RSS_Searcher.new(feed_filname, keywords,last_three_days)
-      expect(searcher.get_links_of_interest(match_level).length == 0)
+      searcher = RSS_Searcher.new
+      expect(searcher.get_links_of_interest(feed_filname, keywords,match_level,last_three_days).length == 0)
     end
 
     it "should give back an empty array for malformed feed urls" do
@@ -55,8 +55,8 @@ RSpec.describe "Searcher" do
       feed_filname = "../feeds/bad_feeds.txt"
       match_level = "ONE_OR_MORE"
       last_three_days = Date.today - 3
-      searcher = RSS_Searcher.new(feed_filname, keywords,last_three_days)
-      expect(searcher.get_links_of_interest(match_level).length == 0)
+      searcher = RSS_Searcher.new
+      expect(searcher.get_links_of_interest(feed_filname, keywords,match_level,last_three_days).length == 0)
     end
 
   end
