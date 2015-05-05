@@ -17,13 +17,19 @@ searcher = Rss_Searcher.new
 array_of_links = searcher.get_links_of_interest(rss_feeds, keywords, match_level, minimum_publish_date)
 ```
 ####rss_feeds:
-Can be a path to a file of line separated urls to rss feeds or an array of urls to rss feeds
+Can be a path to a file of line separated urls to rss feeds or an array of urls to rss feeds.
+
 ####keywords:
-Can be a path to a file of line separated keywords or an array of keywords
+Can be a path to a file of line separated keywords or an array of keywords.
+
 ####match_level:
-"ONE_OR_MORE": One or more keywords must be found in the feed to be declared of interest.
-"ALL": all keywords must be found in a feed to be declared of interest.
-Or an integer between 1-100 denoting the percentage of keywords that must be found in the feed to declare it of interest
+#####"ONE_OR_MORE": 
+One or more keywords must be found in the feed to be declared of interest.
+#####"ALL": 
+all keywords must be found in a feed to be declared of interest.
+#####An Integer between 1-100 
+denoting the percentage of keywords that must be found in the feed to declare it of interest
+
 ####minimum_publish_date
 A ruby date denoting the last date an article can be published before it is considered not of interest
 
