@@ -61,9 +61,13 @@ class RSS_Keyword_Searcher
   end
 
   def out_of_date(news_item)
-    pub_date_string = news_item.pubDate.to_s
-    pub_date = Date.parse(pub_date_string)
-    return pub_date < @minimum_publish_date
+    begin
+      pub_date_string = news_item.pubDate.to_s
+      pub_date = Date.parse(pub_date_string)
+      return pub_date < @minimum_publish_date
+    rescue
+      return true
+    end
   end
 
   def content_from_item(item)

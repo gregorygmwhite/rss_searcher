@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rss_searcher'
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
   s.date        = '2015-05-03'
   s.summary     = "This gem reads rss feeds and then searches them for keywords returning only stories of interest"
   s.description = "A simple rss feed curator based on keyword matches"
